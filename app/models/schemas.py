@@ -39,3 +39,15 @@ class PronunciationReport(BaseModel):
     recognized_text: str
     word_details: List[WordResult]
     reference_text: str
+
+class AIReport(BaseModel):
+    summary: str
+    strengths: list[str]
+    weaknesses: list[str]
+    recommendations: list[str]
+    full_report: str
+
+
+class PronunciationAnalysisResponse(BaseModel):
+    azure_result: PronunciationReport
+    ai_report: AIReport

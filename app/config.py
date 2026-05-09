@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     # Azure Speech API Configuration
     azure_speech_key: str = os.getenv("AZURE_SPEECH_KEY", "")
     azure_speech_region: str = os.getenv("AZURE_SPEECH_REGION", "")
+    google_api_key: str = os.getenv("GOOGLE_API_KEY", "")
     
     # Optional: Full endpoint URL (if using custom endpoint)
     azure_speech_endpoint: Optional[str] = os.getenv("AZURE_SPEECH_ENDPOINT", None)
