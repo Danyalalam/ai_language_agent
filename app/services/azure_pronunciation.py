@@ -138,8 +138,9 @@ class AzurePronunciationAssistant:
         accuracy_score = self._calculate_accuracy(final_words)
         completeness_score = self._calculate_completeness(final_words, reference_words)
         fluency_score = self._calculate_fluency(fluency_scores, durations) if fluency_scores else 0
-        # prosody may not be supported by all SDK builds; use None to detect absence
-        prosody_score = sum(prosody_scores) / len(prosody_scores) if prosody_scores else None
+        # Filter prosody scores to remove None values
+        valid_prosody_scores = [s for s in prosody_scores if s is not None]
+        prosody_score = sum(valid_prosody_scores) / len(valid_prosody_scores) if valid_prosody_scores else None
 
         # Calculate overall score with weight renormalization when prosody is unavailable
         weights = {
@@ -238,7 +239,7 @@ class AzurePronunciationAssistant:
         """Calculate accuracy by averaging word scores."""
         accuracy_scores = [
             w.accuracy_score for w in final_words
-            if w.error_type != 'Insertion'
+            if w.error_type != 'Insertion' and w.accuracy_score is not None
         ]
         return sum(accuracy_scores) / len(accuracy_scores) if accuracy_scores else 0
     
@@ -250,6 +251,45 @@ class AzurePronunciationAssistant:
     
     def _calculate_fluency(self, fluency_scores: List[float], durations: List[int]) -> float:
         """Re-calculate fluency score weighted by duration."""
+        valid_fluency = [f for f in fluency_scores if f is not None]
         if not durations or sum(durations) == 0:
-            return sum(fluency_scores) / len(fluency_scores) if fluency_scores else 0
-        return sum([x * y for x, y in zip(fluency_scores, durations)]) / sum(durations)
+            return sum(valid_fluency) / len(valid_fluency) if valid_fluency else 0
+        return sum([x * y for x, y in zip(fluency_scores, durations) if x is not None]) / sum(durations)
+
+    def get_streaming_recognizer(
+        self,
+        reference_text: str,
+        language: str = "en-US",
+        enable_miscue: bool = True,
+        enable_prosody: bool = True,
+    ):
+        """Create a recognizer and push stream for real-time assessment."""
+        # Setup push stream
+        push_stream = speechsdk.audio.PushAudioInputStream()
+        audio_config = speechsdk.audio.AudioConfig(stream=push_stream)
+
+        # Create pronunciation assessment config
+        pronunciation_config = speechsdk.PronunciationAssessmentConfig(
+            reference_text=reference_text,
+            grading_system=speechsdk.PronunciationAssessmentGradingSystem.HundredMark,
+            granularity=self._get_granularity(settings.granularity),
+            enable_miscue=enable_miscue
+        )
+        
+        if enable_prosody:
+            try:
+                pronunciation_config.enable_prosody_assessment()
+            except Exception:
+                pass
+
+        # Create speech recognizer
+        speech_recognizer = speechsdk.SpeechRecognizer(
+            speech_config=self.speech_config,
+            language=language,
+            audio_config=audio_config
+        )
+        
+        # Apply pronunciation config
+        pronunciation_config.apply_to(speech_recognizer)
+        
+        return speech_recognizer, push_stream
