@@ -20,11 +20,12 @@ class Settings(BaseSettings):
     
     # Audio configuration
     max_audio_file_size_mb: int = 100  # Maximum file size in MB
-    supported_audio_formats: list = ["wav", "mp3", "ogg", "flac"]
+    supported_audio_formats: list = ["wav", "mp3", "ogg", "flac", "webm", "m4a", "mp4"]
     
     # API configuration
     api_title: str = "Pronunciation Analysis Agent"
     api_version: str = "0.1.0"
+    allowed_origins: list[str] = ["*"]
     
     # Pronunciation Assessment settings
     proficiency_level: str = "Intermediate"  # Elementary, Intermediate, Upper-Intermediate

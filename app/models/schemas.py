@@ -5,7 +5,7 @@ from typing import List, Optional
 class WordResult(BaseModel):
     """Individual word pronunciation result."""
     word: str
-    accuracy_score: float
+    accuracy_score: Optional[float] = None
     error_type: str  # "None", "Insertion", "Omission", "Mispronunciation"
 
 
@@ -15,7 +15,7 @@ class PronunciationAssessmentResult(BaseModel):
     pronunciation_score: float
     completeness_score: float
     fluency_score: float
-    prosody_score: float
+    prosody_score: Optional[float] = None
     recognized_text: str
     words: List[WordResult]
 
@@ -35,7 +35,7 @@ class PronunciationReport(BaseModel):
     accuracy_score: float
     completeness_score: float
     fluency_score: float
-    prosody_score: float
+    prosody_score: Optional[float] = None
     recognized_text: str
     word_details: List[WordResult]
     reference_text: str
