@@ -10,7 +10,7 @@ interface AudioUploaderProps {
 
 const AudioUploader: React.FC<AudioUploaderProps> = ({
   onFileSelected,
-  onRecordingFromMicrophone,
+  onRecordingFromMicrophone: _onRecordingFromMicrophone,
   isLoading = false,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
