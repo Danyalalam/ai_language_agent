@@ -158,3 +158,314 @@
 2026-06-16 20:10:41,190 - python_multipart.multipart - DEBUG - Calling on_part_data with data[99644:99648]
 2026-06-16 20:10:41,190 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
 2026-06-16 20:10:41,190 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2026-06-20 10:46:29,957 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:31,686 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:33,224 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:34,859 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:36,875 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:39,740 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:44,171 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:46:51,932 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:47:05,991 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:47:32,879 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:48:25,329 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:49:26,582 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:50:27,828 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:51:29,145 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:52:30,420 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:53:31,712 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:54:32,974 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 10:55:34,229 - fastapi - ERROR - Form data requires "python-multipart" to be installed. 
+You can install "python-multipart" with: 
+
+pip install python-multipart
+
+2026-06-20 11:04:49,541 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,542 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2026-06-20 11:04:49,543 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:85]
+2026-06-20 11:04:49,544 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,544 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,545 - python_multipart.multipart - DEBUG - Calling on_part_data with data[89:96]
+2026-06-20 11:04:49,546 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,546 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,547 - python_multipart.multipart - DEBUG - Calling on_header_field with data[140:159]
+2026-06-20 11:04:49,547 - python_multipart.multipart - DEBUG - Calling on_header_value with data[161:187]
+2026-06-20 11:04:49,548 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,549 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,550 - python_multipart.multipart - DEBUG - Calling on_part_data with data[191:203]
+2026-06-20 11:04:49,550 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,551 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,551 - python_multipart.multipart - DEBUG - Calling on_header_field with data[247:266]
+2026-06-20 11:04:49,552 - python_multipart.multipart - DEBUG - Calling on_header_value with data[268:323]
+2026-06-20 11:04:49,552 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,552 - python_multipart.multipart - DEBUG - Calling on_header_field with data[325:337]
+2026-06-20 11:04:49,553 - python_multipart.multipart - DEBUG - Calling on_header_value with data[339:361]
+2026-06-20 11:04:49,553 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,553 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,554 - python_multipart.multipart - DEBUG - Calling on_part_data with data[365:44131]
+2026-06-20 11:04:49,554 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,554 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,555 - python_multipart.multipart - DEBUG - Calling on_header_field with data[44175:44194]
+2026-06-20 11:04:49,555 - python_multipart.multipart - DEBUG - Calling on_header_value with data[44196:44218]
+2026-06-20 11:04:49,556 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,557 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,558 - python_multipart.multipart - DEBUG - Calling on_part_data with data[44222:44241]
+2026-06-20 11:04:49,558 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,558 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,559 - python_multipart.multipart - DEBUG - Calling on_header_field with data[44285:44304]
+2026-06-20 11:04:49,559 - python_multipart.multipart - DEBUG - Calling on_header_value with data[44306:44341]
+2026-06-20 11:04:49,559 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,560 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,561 - python_multipart.multipart - DEBUG - Calling on_part_data with data[44345:44357]
+2026-06-20 11:04:49,561 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,561 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,562 - python_multipart.multipart - DEBUG - Calling on_header_field with data[44401:44420]
+2026-06-20 11:04:49,562 - python_multipart.multipart - DEBUG - Calling on_header_value with data[44422:44454]
+2026-06-20 11:04:49,563 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,563 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,563 - python_multipart.multipart - DEBUG - Calling on_part_data with data[44458:44462]
+2026-06-20 11:04:49,564 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,564 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:04:49,564 - python_multipart.multipart - DEBUG - Calling on_header_field with data[44506:44525]
+2026-06-20 11:04:49,565 - python_multipart.multipart - DEBUG - Calling on_header_value with data[44527:44558]
+2026-06-20 11:04:49,565 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:04:49,565 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:04:49,566 - python_multipart.multipart - DEBUG - Calling on_part_data with data[44562:44566]
+2026-06-20 11:04:49,566 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:04:49,566 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2026-06-20 11:04:54,043 - app.main - ERROR - Error in assess_from_audio
+Traceback (most recent call last):
+  File "/app/app/services/AI_service.py", line 43, in _build_client
+    from google import genai
+ModuleNotFoundError: No module named 'google'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app/main.py", line 133, in assess_from_audio
+    ai_report_payload = generate_ai_report(
+        azure_report=azure_report,
+        reference_text=reference_text,
+        language=locale,
+    )
+  File "/app/app/services/AI_service.py", line 322, in generate_ai_report
+    service = GeminiReportService()
+  File "/app/app/services/AI_service.py", line 39, in __init__
+    self._client = self._build_client()
+                   ~~~~~~~~~~~~~~~~~~^^
+  File "/app/app/services/AI_service.py", line 45, in _build_client
+    raise ImportError(
+        "google-genai is not installed. Add it to pyproject.toml and run uv sync."
+    ) from exc
+ImportError: google-genai is not installed. Add it to pyproject.toml and run uv sync.
+2026-06-20 11:11:54,505 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,506 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2026-06-20 11:11:54,507 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:85]
+2026-06-20 11:11:54,508 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,509 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,510 - python_multipart.multipart - DEBUG - Calling on_part_data with data[89:96]
+2026-06-20 11:11:54,511 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,511 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,512 - python_multipart.multipart - DEBUG - Calling on_header_field with data[140:159]
+2026-06-20 11:11:54,513 - python_multipart.multipart - DEBUG - Calling on_header_value with data[161:187]
+2026-06-20 11:11:54,514 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,515 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,516 - python_multipart.multipart - DEBUG - Calling on_part_data with data[191:203]
+2026-06-20 11:11:54,517 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,517 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,518 - python_multipart.multipart - DEBUG - Calling on_header_field with data[247:266]
+2026-06-20 11:11:54,519 - python_multipart.multipart - DEBUG - Calling on_header_value with data[268:323]
+2026-06-20 11:11:54,520 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,520 - python_multipart.multipart - DEBUG - Calling on_header_field with data[325:337]
+2026-06-20 11:11:54,521 - python_multipart.multipart - DEBUG - Calling on_header_value with data[339:361]
+2026-06-20 11:11:54,521 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,522 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,522 - python_multipart.multipart - DEBUG - Calling on_part_data with data[365:58621]
+2026-06-20 11:11:54,523 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,523 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,524 - python_multipart.multipart - DEBUG - Calling on_header_field with data[58665:58684]
+2026-06-20 11:11:54,524 - python_multipart.multipart - DEBUG - Calling on_header_value with data[58686:58708]
+2026-06-20 11:11:54,525 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,525 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,526 - python_multipart.multipart - DEBUG - Calling on_part_data with data[58712:58731]
+2026-06-20 11:11:54,526 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,527 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,527 - python_multipart.multipart - DEBUG - Calling on_header_field with data[58775:58794]
+2026-06-20 11:11:54,527 - python_multipart.multipart - DEBUG - Calling on_header_value with data[58796:58831]
+2026-06-20 11:11:54,528 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,529 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,530 - python_multipart.multipart - DEBUG - Calling on_part_data with data[58835:58847]
+2026-06-20 11:11:54,530 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,531 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,532 - python_multipart.multipart - DEBUG - Calling on_header_field with data[58891:58910]
+2026-06-20 11:11:54,532 - python_multipart.multipart - DEBUG - Calling on_header_value with data[58912:58944]
+2026-06-20 11:11:54,533 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,533 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,534 - python_multipart.multipart - DEBUG - Calling on_part_data with data[58948:58952]
+2026-06-20 11:11:54,534 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,535 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:11:54,535 - python_multipart.multipart - DEBUG - Calling on_header_field with data[58996:59015]
+2026-06-20 11:11:54,536 - python_multipart.multipart - DEBUG - Calling on_header_value with data[59017:59048]
+2026-06-20 11:11:54,536 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:11:54,537 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:11:54,537 - python_multipart.multipart - DEBUG - Calling on_part_data with data[59052:59056]
+2026-06-20 11:11:54,538 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:11:54,538 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2026-06-20 11:12:00,339 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-06-20 11:12:00,341 - httpcore.connection - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-06-20 11:12:02,190 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x724b12b7fb60>
+2026-06-20 11:12:02,191 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x724b230d6fd0> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-06-20 11:12:02,353 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x724b12bcfed0>
+2026-06-20 11:12:02,354 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-06-20 11:12:02,354 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-06-20 11:12:02,355 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-06-20 11:12:02,356 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-06-20 11:12:02,356 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-06-20 11:12:03,099 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 403, b'Forbidden', [(b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sat, 20 Jun 2026 11:12:02 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=692'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-20 11:12:03,100 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2026-06-20 11:12:03,101 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-06-20 11:12:03,102 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-06-20 11:12:03,103 - httpcore.http11 - DEBUG - response_closed.started
+2026-06-20 11:12:03,104 - httpcore.http11 - DEBUG - response_closed.complete
+2026-06-20 11:12:03,120 - httpcore.connection - DEBUG - close.started
+2026-06-20 11:12:03,122 - httpcore.connection - DEBUG - close.complete
+2026-06-20 11:12:44,012 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,013 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2026-06-20 11:12:44,013 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:85]
+2026-06-20 11:12:44,014 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,015 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,017 - python_multipart.multipart - DEBUG - Calling on_part_data with data[89:96]
+2026-06-20 11:12:44,018 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,020 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,021 - python_multipart.multipart - DEBUG - Calling on_header_field with data[140:159]
+2026-06-20 11:12:44,022 - python_multipart.multipart - DEBUG - Calling on_header_value with data[161:187]
+2026-06-20 11:12:44,022 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,023 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,023 - python_multipart.multipart - DEBUG - Calling on_part_data with data[191:203]
+2026-06-20 11:12:44,024 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,025 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,025 - python_multipart.multipart - DEBUG - Calling on_header_field with data[247:266]
+2026-06-20 11:12:44,026 - python_multipart.multipart - DEBUG - Calling on_header_value with data[268:323]
+2026-06-20 11:12:44,027 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,027 - python_multipart.multipart - DEBUG - Calling on_header_field with data[325:337]
+2026-06-20 11:12:44,028 - python_multipart.multipart - DEBUG - Calling on_header_value with data[339:348]
+2026-06-20 11:12:44,028 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,028 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,029 - python_multipart.multipart - DEBUG - Calling on_part_data with data[352:98304]
+2026-06-20 11:12:44,029 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:117760]
+2026-06-20 11:12:44,030 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:101376]
+2026-06-20 11:12:44,030 - python_multipart.multipart - DEBUG - Calling on_part_data with data[0:21678]
+2026-06-20 11:12:44,031 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,031 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,032 - python_multipart.multipart - DEBUG - Calling on_header_field with data[21722:21741]
+2026-06-20 11:12:44,032 - python_multipart.multipart - DEBUG - Calling on_header_value with data[21743:21765]
+2026-06-20 11:12:44,034 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,034 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,035 - python_multipart.multipart - DEBUG - Calling on_part_data with data[21769:21788]
+2026-06-20 11:12:44,035 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,036 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,036 - python_multipart.multipart - DEBUG - Calling on_header_field with data[21832:21851]
+2026-06-20 11:12:44,037 - python_multipart.multipart - DEBUG - Calling on_header_value with data[21853:21888]
+2026-06-20 11:12:44,037 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,037 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,038 - python_multipart.multipart - DEBUG - Calling on_part_data with data[21892:21904]
+2026-06-20 11:12:44,038 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,039 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,039 - python_multipart.multipart - DEBUG - Calling on_header_field with data[21948:21967]
+2026-06-20 11:12:44,039 - python_multipart.multipart - DEBUG - Calling on_header_value with data[21969:22001]
+2026-06-20 11:12:44,040 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,040 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,040 - python_multipart.multipart - DEBUG - Calling on_part_data with data[22005:22009]
+2026-06-20 11:12:44,041 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,041 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:12:44,041 - python_multipart.multipart - DEBUG - Calling on_header_field with data[22053:22072]
+2026-06-20 11:12:44,042 - python_multipart.multipart - DEBUG - Calling on_header_value with data[22074:22105]
+2026-06-20 11:12:44,042 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:12:44,042 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:12:44,043 - python_multipart.multipart - DEBUG - Calling on_part_data with data[22109:22113]
+2026-06-20 11:12:44,043 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:12:44,044 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2026-06-20 11:12:47,345 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-06-20 11:12:47,346 - httpcore.connection - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-06-20 11:12:47,400 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x724b128ced50>
+2026-06-20 11:12:47,401 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x724b12b23430> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-06-20 11:12:47,567 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x724b12b48640>
+2026-06-20 11:12:47,568 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-06-20 11:12:47,569 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-06-20 11:12:47,569 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-06-20 11:12:47,570 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-06-20 11:12:47,570 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-06-20 11:12:48,324 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 403, b'Forbidden', [(b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sat, 20 Jun 2026 11:12:48 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=704'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-20 11:12:48,325 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2026-06-20 11:12:48,326 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-06-20 11:12:48,327 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-06-20 11:12:48,328 - httpcore.http11 - DEBUG - response_closed.started
+2026-06-20 11:12:48,328 - httpcore.http11 - DEBUG - response_closed.complete
