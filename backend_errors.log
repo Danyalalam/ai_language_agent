@@ -469,3 +469,76 @@ ImportError: google-genai is not installed. Add it to pyproject.toml and run uv 
 2026-06-20 11:12:48,327 - httpcore.http11 - DEBUG - receive_response_body.complete
 2026-06-20 11:12:48,328 - httpcore.http11 - DEBUG - response_closed.started
 2026-06-20 11:12:48,328 - httpcore.http11 - DEBUG - response_closed.complete
+2026-06-20 11:47:49,530 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,531 - python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+2026-06-20 11:47:49,532 - python_multipart.multipart - DEBUG - Calling on_header_value with data[63:85]
+2026-06-20 11:47:49,533 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,533 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,535 - python_multipart.multipart - DEBUG - Calling on_part_data with data[89:96]
+2026-06-20 11:47:49,536 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,537 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,538 - python_multipart.multipart - DEBUG - Calling on_header_field with data[140:159]
+2026-06-20 11:47:49,539 - python_multipart.multipart - DEBUG - Calling on_header_value with data[161:187]
+2026-06-20 11:47:49,540 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,541 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,541 - python_multipart.multipart - DEBUG - Calling on_part_data with data[191:203]
+2026-06-20 11:47:49,542 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,543 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,544 - python_multipart.multipart - DEBUG - Calling on_header_field with data[247:266]
+2026-06-20 11:47:49,544 - python_multipart.multipart - DEBUG - Calling on_header_value with data[268:323]
+2026-06-20 11:47:49,545 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,545 - python_multipart.multipart - DEBUG - Calling on_header_field with data[325:337]
+2026-06-20 11:47:49,546 - python_multipart.multipart - DEBUG - Calling on_header_value with data[339:361]
+2026-06-20 11:47:49,546 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,547 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,547 - python_multipart.multipart - DEBUG - Calling on_part_data with data[365:37369]
+2026-06-20 11:47:49,548 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,548 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,549 - python_multipart.multipart - DEBUG - Calling on_header_field with data[37413:37432]
+2026-06-20 11:47:49,550 - python_multipart.multipart - DEBUG - Calling on_header_value with data[37434:37456]
+2026-06-20 11:47:49,550 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,550 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,551 - python_multipart.multipart - DEBUG - Calling on_part_data with data[37460:37479]
+2026-06-20 11:47:49,552 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,553 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,554 - python_multipart.multipart - DEBUG - Calling on_header_field with data[37523:37542]
+2026-06-20 11:47:49,555 - python_multipart.multipart - DEBUG - Calling on_header_value with data[37544:37579]
+2026-06-20 11:47:49,556 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,557 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,558 - python_multipart.multipart - DEBUG - Calling on_part_data with data[37583:37595]
+2026-06-20 11:47:49,559 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,559 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,560 - python_multipart.multipart - DEBUG - Calling on_header_field with data[37639:37658]
+2026-06-20 11:47:49,561 - python_multipart.multipart - DEBUG - Calling on_header_value with data[37660:37692]
+2026-06-20 11:47:49,562 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,563 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,564 - python_multipart.multipart - DEBUG - Calling on_part_data with data[37696:37700]
+2026-06-20 11:47:49,565 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,565 - python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+2026-06-20 11:47:49,566 - python_multipart.multipart - DEBUG - Calling on_header_field with data[37744:37763]
+2026-06-20 11:47:49,566 - python_multipart.multipart - DEBUG - Calling on_header_value with data[37765:37796]
+2026-06-20 11:47:49,567 - python_multipart.multipart - DEBUG - Calling on_header_end with no data
+2026-06-20 11:47:49,567 - python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+2026-06-20 11:47:49,568 - python_multipart.multipart - DEBUG - Calling on_part_data with data[37800:37804]
+2026-06-20 11:47:49,568 - python_multipart.multipart - DEBUG - Calling on_part_end with no data
+2026-06-20 11:47:49,569 - python_multipart.multipart - DEBUG - Calling on_end with no data
+2026-06-20 11:47:53,571 - google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+2026-06-20 11:47:53,573 - httpcore.connection - DEBUG - connect_tcp.started host='generativelanguage.googleapis.com' port=443 local_address=None timeout=None socket_options=None
+2026-06-20 11:47:53,813 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x724b12b49f30>
+2026-06-20 11:47:53,814 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x724b128a47d0> server_hostname='generativelanguage.googleapis.com' timeout=None
+2026-06-20 11:47:53,988 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x724b128c6450>
+2026-06-20 11:47:53,989 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2026-06-20 11:47:53,990 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-06-20 11:47:53,990 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2026-06-20 11:47:53,991 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-06-20 11:47:53,992 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2026-06-20 11:47:54,199 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 403, b'Forbidden', [(b'Vary', b'Origin'), (b'Vary', b'X-Origin'), (b'Vary', b'Referer'), (b'Content-Type', b'application/json; charset=UTF-8'), (b'Content-Encoding', b'gzip'), (b'Date', b'Sat, 20 Jun 2026 11:47:54 GMT'), (b'Server', b'scaffolding on HTTPServer2'), (b'X-XSS-Protection', b'0'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Content-Type-Options', b'nosniff'), (b'Server-Timing', b'gfet4t7; dur=152'), (b'Alt-Svc', b'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'), (b'Transfer-Encoding', b'chunked')])
+2026-06-20 11:47:54,201 - httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2026-06-20 11:47:54,202 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2026-06-20 11:47:54,203 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-06-20 11:47:54,203 - httpcore.http11 - DEBUG - response_closed.started
+2026-06-20 11:47:54,204 - httpcore.http11 - DEBUG - response_closed.complete
+2026-06-20 11:51:57,434 - httpcore.connection - DEBUG - close.started
+2026-06-20 11:51:57,435 - httpcore.connection - DEBUG - close.complete
+2026-06-20 11:51:57,436 - httpcore.connection - DEBUG - close.started
+2026-06-20 11:51:57,437 - httpcore.connection - DEBUG - close.complete
