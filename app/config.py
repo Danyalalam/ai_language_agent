@@ -38,6 +38,7 @@ class Settings(BaseSettings):
 
 
 # Create settings instance
+# This will read the environment variables and populate the settings
 settings = Settings()
 
 
