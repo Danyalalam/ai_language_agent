@@ -1,0 +1,161 @@
+.german-voice-chat {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.gvc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.gvc-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.gvc-subtitle {
+  font-size: 13px;
+  color: #666;
+  margin: 4px 0 0;
+}
+
+.gvc-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  background: #f0f0f0;
+  color: #555;
+}
+
+.gvc-status--ready,
+.gvc-status--connected {
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+
+.gvc-status--listening {
+  background: #e7f0fd;
+  color: #0056cc;
+}
+
+.gvc-status--processing,
+.gvc-status--connecting {
+  background: #fff4e0;
+  color: #b76e00;
+}
+
+.gvc-status--error {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.gvc-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.gvc-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gvc-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.gvc-btn--start {
+  background: #0070f3;
+  color: white;
+}
+
+.gvc-btn--start:hover:not(:disabled) {
+  background: #0056cc;
+  box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2);
+}
+
+.gvc-btn--stop {
+  background: #e74c3c;
+  color: white;
+}
+
+.gvc-btn--stop:hover:not(:disabled) {
+  background: #c0392b;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+}
+
+.gvc-spin {
+  animation: gvc-spin 1s linear infinite;
+}
+
+@keyframes gvc-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gvc-error {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #fdecea;
+  color: #c0392b;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.gvc-transcript {
+  margin-top: 16px;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.gvc-line {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gvc-role {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #999;
+}
+
+.gvc-line--assistant .gvc-role {
+  color: #0070f3;
+}
+
+.gvc-text {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+}

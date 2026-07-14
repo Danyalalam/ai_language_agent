@@ -1,0 +1,9 @@
+2026-07-14 16:05:45,906:azure.identity.aio._credentials.environment:INFO:No environment configuration found.
+2026-07-14 16:05:46,029:azure.identity.aio._credentials.managed_identity:INFO:ManagedIdentityCredential will use IMDS
+2026-07-14 16:05:46,029:__main__:INFO:Using DefaultAzureCredential
+2026-07-14 16:05:46,030:__main__:INFO:Connecting to VoiceLive API with model gpt-realtime
+2026-07-14 16:05:46,031:azure.core.pipeline.policies.http_logging_policy:INFO:Request URL: 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=REDACTED'
+Request method: 'GET'
+Request headers:
+    'User-Agent': 'azsdk-python-identity/1.25.3 Python/3.13.5 (Windows-10-10.0.19045-SP0)'
+No body was attached to the request

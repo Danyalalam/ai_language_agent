@@ -16,6 +16,7 @@ from app.config import settings
 from app.models.schemas import PronunciationAnalysisResponse, PronunciationReport
 from app.services.AI_service import generate_ai_report
 from app.services.azure_pronunciation import AzurePronunciationAssistant
+from app.services.voicelive_bridge import run_voicelive_bridge
 
 logging.basicConfig(
     filename="backend_errors.log",
@@ -396,6 +397,18 @@ async def assess_stream(
             push_stream.close()
         except Exception:
             pass
+
+
+@app.websocket("/api/voice/live")
+async def voice_live(websocket: WebSocket):
+    """Live German conversation: relays browser audio to Azure VoiceLive.
+
+    The browser sends binary PCM16 mono @ 24 kHz mic frames and receives binary
+    PCM16 audio plus JSON status/transcript/error events. See
+    ``app.services.voicelive_bridge`` and ``frontend/src/services/voiceLiveClient.ts``.
+    """
+    await websocket.accept()
+    await run_voicelive_bridge(websocket)
 
 
 if __name__ == "__main__":

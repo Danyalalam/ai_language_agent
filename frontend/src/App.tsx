@@ -5,6 +5,7 @@ import TextInput from './components/TextInput';
 import AudioRecorder from './components/AudioRecorder';
 import AudioUploader from './components/AudioUploader';
 import AssessmentResult from './components/AssessmentResult';
+import GermanVoiceChat from './components/GermanVoiceChat';
 import { api } from './services/api';
 import './App.css';
 
@@ -97,6 +98,8 @@ function App() {
 
         <div className="main-content">
           <div className="content-wrapper">
+            <GermanVoiceChat />
+
             <div className="input-section">
               <TextInput
                 value={sampleText}
