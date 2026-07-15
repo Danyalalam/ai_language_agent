@@ -22,6 +22,7 @@ export type VoiceState =
   | 'ready'
   | 'listening'
   | 'processing'
+  | 'speaking'
   | 'error';
 
 export interface VoiceLiveHandlers {
@@ -32,8 +33,8 @@ export interface VoiceLiveHandlers {
 
 function buildWebSocketUrl(): string {
   // http://host/api -> ws://host/api/voice/live  (and https -> wss)
-  const wsBase = API_BASE_URL.replace(/^http/, 'ws');
-  return `${wsBase.replace(/\/$/, '')}/voice/live`;
+  const wsBase = API_BASE_URL.replace(/^http/, 'ws').replace(/\/$/, '');
+  return `${wsBase}/voice/live`;
 }
 
 export class VoiceLiveClient {
@@ -101,7 +102,6 @@ export class VoiceLiveClient {
         reject(new Error('WebSocket connection error'));
       };
       ws.onclose = () => {
-        // Only treat as terminal if we didn't already stop cleanly.
         if (this.ws) {
           this.setState('idle');
         }
@@ -115,26 +115,28 @@ export class VoiceLiveClient {
       this.enqueuePlayback(event.data);
       return;
     }
+    let msg: Record<string, unknown>;
     try {
-      const msg = JSON.parse(event.data as string);
-      switch (msg.type) {
-        case 'status':
-          this.setState(msg.state as VoiceState);
-          break;
-        case 'speech_started':
-          // Barge-in: user is talking over the assistant. Drop queued audio.
-          this.flushPlayback();
-          break;
-        case 'transcript':
-          this.handlers.onTranscript?.(msg.role, msg.text);
-          break;
-        case 'error':
-          this.handlers.onError?.(msg.message);
-          this.setState('error');
-          break;
-      }
+      msg = JSON.parse(event.data as string);
     } catch {
-      // Ignore non-JSON text frames.
+      return; // Ignore non-JSON text frames.
+    }
+
+    switch (msg.type) {
+      case 'status':
+        this.setState(msg.state as VoiceState);
+        break;
+      case 'speech_started':
+        // Barge-in: user is talking over the assistant. Drop queued audio.
+        this.flushPlayback();
+        break;
+      case 'transcript':
+        this.handlers.onTranscript?.(msg.role as string, msg.text as string);
+        break;
+      case 'error':
+        this.handlers.onError?.(msg.message as string);
+        this.setState('error');
+        break;
     }
   }
 

@@ -1,106 +1,139 @@
-.german-voice-chat {
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.gvc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
 }
 
-.gvc-header {
+/* --- Stage: audio orb --- */
+
+.gvc-stage {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   gap: 16px;
-  margin-bottom: 16px;
+  background: linear-gradient(160deg, var(--surface-2), var(--primary-soft));
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 24px;
+  min-height: 320px;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.gvc-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0;
+.gvc-audio-orb {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gvc-subtitle {
-  font-size: 13px;
-  color: #666;
-  margin: 4px 0 0;
+.gvc-audio-orb[data-state='listening'] {
+  animation: gvc-pulse 1.4s ease-in-out infinite;
 }
+
+.gvc-audio-orb[data-state='speaking'],
+.gvc-audio-orb[data-state='processing'] {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--primary) 18%, transparent);
+}
+
+@keyframes gvc-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 40%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 16px color-mix(in srgb, var(--primary) 0%, transparent);
+  }
+}
+
+/* --- Status pill --- */
 
 .gvc-status {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  padding: 4px 10px;
+  padding: 6px 14px;
   border-radius: 999px;
   white-space: nowrap;
-  background: #f0f0f0;
-  color: #555;
+  background: var(--surface);
+  color: var(--text-light);
+  box-shadow: var(--shadow-sm);
+  z-index: 1;
 }
 
 .gvc-status--ready,
 .gvc-status--connected {
-  background: #e6f4ea;
-  color: #1e7e34;
+  color: var(--success);
 }
 
 .gvc-status--listening {
-  background: #e7f0fd;
-  color: #0056cc;
+  color: var(--primary);
+}
+
+.gvc-status--speaking {
+  color: var(--accent);
 }
 
 .gvc-status--processing,
 .gvc-status--connecting {
-  background: #fff4e0;
-  color: #b76e00;
+  color: var(--warning);
 }
 
 .gvc-status--error {
-  background: #fdecea;
-  color: #c0392b;
+  color: var(--danger);
 }
+
+/* --- Controls --- */
 
 .gvc-controls {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
 }
 
 .gvc-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 12px 22px;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
 }
 
 .gvc-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.65;
   cursor: not-allowed;
 }
 
 .gvc-btn--start {
-  background: #0070f3;
-  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: var(--shadow-sm);
 }
 
 .gvc-btn--start:hover:not(:disabled) {
-  background: #0056cc;
-  box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 .gvc-btn--stop {
-  background: #e74c3c;
-  color: white;
+  background: var(--danger);
 }
 
 .gvc-btn--stop:hover:not(:disabled) {
-  background: #c0392b;
-  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
+  filter: brightness(0.95);
 }
 
 .gvc-spin {
@@ -116,23 +149,25 @@
   }
 }
 
+/* --- Error + transcript --- */
+
 .gvc-error {
-  margin-top: 12px;
-  padding: 10px 12px;
-  background: #fdecea;
-  color: #c0392b;
-  border-radius: 6px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  color: var(--danger);
+  border-radius: var(--radius-sm);
   font-size: 13px;
 }
 
 .gvc-transcript {
-  margin-top: 16px;
-  border-top: 1px solid #eee;
-  padding-top: 12px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-height: 240px;
+  gap: 12px;
+  max-height: 260px;
   overflow-y: auto;
 }
 
@@ -144,18 +179,18 @@
 
 .gvc-role {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #999;
+  letter-spacing: 0.05em;
+  color: var(--text-lighter);
 }
 
 .gvc-line--assistant .gvc-role {
-  color: #0070f3;
+  color: var(--primary);
 }
 
 .gvc-text {
-  font-size: 14px;
-  color: #333;
-  line-height: 1.4;
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.45;
 }

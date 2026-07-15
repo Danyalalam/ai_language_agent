@@ -175,9 +175,8 @@ class VoiceLiveBridge:
                 await self._send_status("processing")
 
             elif event.type == ServerEventType.RESPONSE_AUDIO_DELTA:
-                # The SDK already decodes the base64 wire format: event.delta is
-                # raw PCM16 bytes (same value the CLI writes straight to PyAudio).
-                # Forward it to the browser as-is.
+                # The SDK already base64-decodes the wire format: event.delta is
+                # raw PCM16 bytes. Forward to the browser as-is.
                 await self.ws.send_bytes(event.delta)
 
             elif event.type == ServerEventType.RESPONSE_AUDIO_DONE:
