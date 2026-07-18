@@ -27,6 +27,7 @@ dependencies = [
     { name = "python-multipart" },
     { name = "ruff" },
     { name = "uvicorn" },
+    { name = "websockets" },
 ]
 
 [package.metadata]
@@ -45,6 +46,7 @@ requires-dist = [
     { name = "python-multipart", specifier = "==0.0.28" },
     { name = "ruff", specifier = ">=0.15.12" },
     { name = "uvicorn", specifier = ">=0.46.0" },
+    { name = "websockets", specifier = ">=14" },
 ]
 
 [[package]]

@@ -17,6 +17,9 @@ dependencies = [
     "python-dotenv>=1.2.2",
     "ruff>=0.15.12",
     "uvicorn>=0.46.0",
+    # Explicit so uvicorn can always serve the /api/voice/live WebSocket in the
+    # container (otherwise WS support only rides in transitively).
+    "websockets>=14",
     "python-multipart==0.0.28",
     "google-genai>=2.9.0",
 ]
