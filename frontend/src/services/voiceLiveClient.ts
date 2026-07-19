@@ -10,7 +10,7 @@
  *                       transcript / error events.
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const SAMPLE_RATE = 24000;
 const CAPTURE_BUFFER_SIZE = 4096;
@@ -32,9 +32,14 @@ export interface VoiceLiveHandlers {
 }
 
 function buildWebSocketUrl(): string {
-  // http://host/api -> ws://host/api/voice/live  (and https -> wss)
-  const wsBase = API_BASE_URL.replace(/^http/, 'ws').replace(/\/$/, '');
-  return `${wsBase}/voice/live`;
+  const base = API_BASE_URL.replace(/\/$/, '');
+  // Absolute base (e.g. http://host:8000/api) -> swap the scheme to ws/wss.
+  if (/^https?:\/\//i.test(base)) {
+    return `${base.replace(/^http/, 'ws')}/voice/live`;
+  }
+  // Relative base (e.g. /api, same-origin): derive ws/wss from the page.
+  const proto = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  return `${proto}://${window.location.host}${base}/voice/live`;
 }
 
 export class VoiceLiveClient {

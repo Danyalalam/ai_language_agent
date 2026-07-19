@@ -31,7 +31,21 @@ app = FastAPI(
     description="AI Language Agent for English Pronunciation Analysis",
 )
 
-pronunciation_assistant = AzurePronunciationAssistant()
+# Instantiate lazily: AzurePronunciationAssistant() validates Azure Speech
+# credentials in its constructor and raises if they're missing. Building it at
+# import time would crash the whole app on startup (failing cloud verification)
+# and take down the frontend and voice tutor too — even though they don't need
+# Speech credentials. Building on first use lets the app boot regardless; only
+# the pronunciation endpoints error if their credentials aren't configured.
+_pronunciation_assistant: AzurePronunciationAssistant | None = None
+
+
+def get_pronunciation_assistant() -> AzurePronunciationAssistant:
+    global _pronunciation_assistant
+    if _pronunciation_assistant is None:
+        _pronunciation_assistant = AzurePronunciationAssistant()
+    return _pronunciation_assistant
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -122,7 +136,7 @@ async def assess_from_audio(
             logger.exception("Audio conversion failed")
             raise HTTPException(status_code=400, detail=f"Audio conversion failed: {str(exc)}")
 
-        azure_report = pronunciation_assistant.assess_pronunciation(
+        azure_report = get_pronunciation_assistant().assess_pronunciation(
             audio_file_path=wav_path,
             reference_text=reference_text,
             language=locale,
@@ -229,7 +243,7 @@ async def analyze_pronunciation(
         except Exception as exc:
             raise HTTPException(status_code=400, detail=f"Audio conversion failed: {str(exc)}")
 
-        azure_report = pronunciation_assistant.assess_pronunciation(
+        azure_report = get_pronunciation_assistant().assess_pronunciation(
             audio_file_path=wav_path,
             reference_text=reference_text,
             language=locale,
@@ -292,7 +306,7 @@ async def analyze_with_reference(
             ref_file.write(await reference_file.read())
             reference_tmp_path = ref_file.name
 
-        azure_report = pronunciation_assistant.assess_pronunciation(
+        azure_report = get_pronunciation_assistant().assess_pronunciation(
             audio_file_path=tmp_path,
             reference_text=reference_text,
             language=locale,
@@ -344,7 +358,7 @@ async def assess_stream(
         await websocket.close()
         return
 
-    recognizer, push_stream = pronunciation_assistant.get_streaming_recognizer(
+    recognizer, push_stream = get_pronunciation_assistant().get_streaming_recognizer(
         reference_text=reference_text,
         language=locale,
         enable_miscue=enable_miscue,
@@ -409,6 +423,19 @@ async def voice_live(websocket: WebSocket):
     """
     await websocket.accept()
     await run_voicelive_bridge(websocket)
+
+
+# Serve the built frontend (Vite `dist/`) so a single FastAPI deployment
+# (e.g. FastAPI Cloud) serves both the API and the SPA. The API routes above are
+# matched first; the frontend handles everything else, with SPA fallback to
+# index.html. Mounted only when the build exists, so pure-API development and the
+# backend-only Docker image don't fail to import.
+_FRONTEND_DIST = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")
+if os.path.isdir(_FRONTEND_DIST):
+    app.frontend("/", directory=_FRONTEND_DIST, fallback="index.html")
+    logger.info("Serving frontend from %s", _FRONTEND_DIST)
+else:
+    logger.info("Frontend build not found at %s; serving API only", _FRONTEND_DIST)
 
 
 if __name__ == "__main__":

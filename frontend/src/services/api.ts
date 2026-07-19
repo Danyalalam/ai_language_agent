@@ -1,7 +1,11 @@
 import axios from 'axios';
 import type { AssessmentResult, Config } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+// Default to a same-origin relative path so a single FastAPI deployment can
+// serve both the API and the SPA. In local dev the Vite proxy (see
+// vite.config.ts) forwards /api to the backend on :8000. Override with
+// VITE_API_BASE_URL for split deployments (e.g. the docker-compose frontend).
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

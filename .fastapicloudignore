@@ -1,0 +1,5 @@
+# FastAPI Cloud respects .gitignore, which excludes the generated frontend
+# build (frontend/dist). Re-include it here so the deployment can serve the SPA.
+# Build it before every deploy: `cd frontend && npm run build`.
+!frontend/dist/
+!frontend/dist/**

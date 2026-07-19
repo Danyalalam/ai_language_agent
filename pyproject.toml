@@ -10,10 +10,9 @@ dependencies = [
     "azure-core",
     "azure-identity",
     "aiohttp",
-    "fastapi>=0.136.1",
+    "fastapi[standard]>=0.136.1",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.14.0",
-    "pyaudio",
     "python-dotenv>=1.2.2",
     "ruff>=0.15.12",
     "uvicorn>=0.46.0",
@@ -22,4 +21,13 @@ dependencies = [
     "websockets>=14",
     "python-multipart==0.0.28",
     "google-genai>=2.9.0",
+    "fastapi-cloud-cli>=0.22.2",
 ]
+
+[project.optional-dependencies]
+# pyaudio is only needed by the local terminal agent (app/services/german_voice_agent.py),
+# which captures/plays audio on the host. It requires the PortAudio system library
+# to build and is NOT used by the web app, so it's excluded from the default
+# install (and from cloud deploys, which have no portaudio.h).
+# Install locally with: uv sync --extra cli
+cli = ["pyaudio"]
