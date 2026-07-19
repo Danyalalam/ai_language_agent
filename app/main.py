@@ -6,11 +6,13 @@ import logging
 import os
 import subprocess
 import tempfile
+from pathlib import Path
 
 import azure.cognitiveservices.speech as speechsdk
 import uvicorn
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, HTMLResponse
 
 from app.config import settings
 from app.models.schemas import PronunciationAnalysisResponse, PronunciationReport
@@ -30,6 +32,8 @@ app = FastAPI(
     version=settings.api_version,
     description="AI Language Agent for English Pronunciation Analysis",
 )
+
+_FRONTEND_DIST = Path(__file__).resolve().parents[1] / "frontend" / "dist"
 
 # Instantiate lazily: AzurePronunciationAssistant() validates Azure Speech
 # credentials in its constructor and raises if they're missing. Building it at
@@ -425,17 +429,46 @@ async def voice_live(websocket: WebSocket):
     await run_voicelive_bridge(websocket)
 
 
-# Serve the built frontend (Vite `dist/`) so a single FastAPI deployment
-# (e.g. FastAPI Cloud) serves both the API and the SPA. The API routes above are
-# matched first; the frontend handles everything else, with SPA fallback to
-# index.html. Mounted only when the build exists, so pure-API development and the
-# backend-only Docker image don't fail to import.
-_FRONTEND_DIST = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")
-if os.path.isdir(_FRONTEND_DIST):
-    app.frontend("/", directory=_FRONTEND_DIST, fallback="index.html")
+if _FRONTEND_DIST.is_dir() and hasattr(app, "frontend"):
+    app.frontend("/", directory=str(_FRONTEND_DIST))
     logger.info("Serving frontend from %s", _FRONTEND_DIST)
 else:
-    logger.info("Frontend build not found at %s; serving API only", _FRONTEND_DIST)
+
+    @app.get("/")
+    async def root():
+        """Serve the SPA at the deployment root when the frontend build exists."""
+        if _FRONTEND_DIST.is_dir():
+            return FileResponse(_FRONTEND_DIST / "index.html")
+
+        return HTMLResponse(
+            """
+            <html>
+              <head><title>AI Language Agent</title></head>
+              <body>
+                <h1>AI Language Agent</h1>
+                <p>The backend is running, but the frontend build was not found.</p>
+                <p>Build the frontend and deploy the generated <code>frontend/dist</code> folder with the app.</p>
+              </body>
+            </html>
+            """,
+            status_code=200,
+        )
+
+
+    @app.get("/{path:path}")
+    async def spa_fallback(path: str):
+        """Serve built frontend assets and support client-side routing."""
+        if path.startswith("api/") or path in {"docs", "redoc", "openapi.json", "health"}:
+            raise HTTPException(status_code=404, detail="Not Found")
+
+        if not _FRONTEND_DIST.is_dir():
+            raise HTTPException(status_code=404, detail="Not Found")
+
+        requested_file = _FRONTEND_DIST / path
+        if requested_file.is_file():
+            return FileResponse(requested_file)
+
+        return FileResponse(_FRONTEND_DIST / "index.html")
 
 
 if __name__ == "__main__":
