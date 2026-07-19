@@ -33,7 +33,20 @@ app = FastAPI(
     description="AI Language Agent for English Pronunciation Analysis",
 )
 
-_FRONTEND_DIST = Path(__file__).resolve().parents[1] / "frontend" / "dist"
+_APP_DIR = Path(__file__).resolve().parent
+_REPO_ROOT = _APP_DIR.parent
+_FRONTEND_DIST_CANDIDATES = [
+    _REPO_ROOT / "frontend" / "dist",
+    _APP_DIR / "frontend" / "dist",
+    _APP_DIR / "dist",
+]
+
+
+def get_frontend_dist() -> Path | None:
+    for candidate in _FRONTEND_DIST_CANDIDATES:
+        if candidate.is_dir():
+            return candidate
+    return None
 
 # Instantiate lazily: AzurePronunciationAssistant() validates Azure Speech
 # credentials in its constructor and raises if they're missing. Building it at
@@ -429,7 +442,9 @@ async def voice_live(websocket: WebSocket):
     await run_voicelive_bridge(websocket)
 
 
-if _FRONTEND_DIST.is_dir() and hasattr(app, "frontend"):
+_FRONTEND_DIST = get_frontend_dist()
+
+if _FRONTEND_DIST is not None and hasattr(app, "frontend"):
     app.frontend("/", directory=str(_FRONTEND_DIST))
     logger.info("Serving frontend from %s", _FRONTEND_DIST)
 else:
@@ -437,7 +452,7 @@ else:
     @app.get("/")
     async def root():
         """Serve the SPA at the deployment root when the frontend build exists."""
-        if _FRONTEND_DIST.is_dir():
+        if _FRONTEND_DIST is not None:
             return FileResponse(_FRONTEND_DIST / "index.html")
 
         return HTMLResponse(
@@ -461,7 +476,7 @@ else:
         if path.startswith("api/") or path in {"docs", "redoc", "openapi.json", "health"}:
             raise HTTPException(status_code=404, detail="Not Found")
 
-        if not _FRONTEND_DIST.is_dir():
+        if _FRONTEND_DIST is None:
             raise HTTPException(status_code=404, detail="Not Found")
 
         requested_file = _FRONTEND_DIST / path
