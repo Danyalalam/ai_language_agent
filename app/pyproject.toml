@@ -22,6 +22,10 @@ dependencies = [
     "python-multipart==0.0.28",
     "google-genai>=2.9.0",
     "fastapi-cloud-cli>=0.22.2",
+    # Bundled ffmpeg binary (as a pip wheel) so audio conversion works in
+    # environments without a system ffmpeg — e.g. FastAPI Cloud. Used by
+    # convert_to_wav() to decode uploaded/recorded audio (webm/opus, etc.).
+    "imageio-ffmpeg>=0.5.1",
 ]
 
 [project.optional-dependencies]

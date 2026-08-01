@@ -78,13 +78,29 @@ LANGUAGE_MAP = {
 }
 
 
+def _ffmpeg_exe() -> str:
+    """Resolve an ffmpeg binary.
+
+    Prefer the one bundled by ``imageio-ffmpeg`` (installed as a pip wheel) so
+    audio conversion works in environments without a system ffmpeg, such as
+    FastAPI Cloud. Fall back to a system ``ffmpeg`` on PATH if the wheel isn't
+    available for some reason.
+    """
+    try:
+        import imageio_ffmpeg
+
+        return imageio_ffmpeg.get_ffmpeg_exe()
+    except Exception:  # noqa: BLE001
+        return "ffmpeg"
+
+
 def convert_to_wav(input_path: str) -> str:
     """Convert any audio format to 16kHz mono WAV for Azure."""
     output_path = f"{input_path}_converted.wav"
     try:
         subprocess.run(
             [
-                "ffmpeg",
+                _ffmpeg_exe(),
                 "-y",
                 "-i",
                 input_path,
