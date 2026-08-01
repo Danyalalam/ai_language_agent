@@ -39,13 +39,22 @@ _FRONTEND_DIST_CANDIDATES = [
     _REPO_ROOT / "frontend" / "dist",
     _APP_DIR / "frontend" / "dist",
     _APP_DIR / "dist",
+    Path.cwd() / "frontend" / "dist",
 ]
 
 
 def get_frontend_dist() -> Path | None:
     for candidate in _FRONTEND_DIST_CANDIDATES:
-        if candidate.is_dir():
+        if candidate.is_dir() and (candidate / "index.html").is_file():
+            # print() (not logger) so this shows in FastAPI Cloud's stdout logs;
+            # the module logger is configured to write to a file, not stdout.
+            print(f"[frontend] serving SPA from: {candidate}", flush=True)
             return candidate
+    print(
+        "[frontend] dist NOT found; checked: "
+        + ", ".join(str(c) for c in _FRONTEND_DIST_CANDIDATES),
+        flush=True,
+    )
     return None
 
 # Instantiate lazily: AzurePronunciationAssistant() validates Azure Speech
