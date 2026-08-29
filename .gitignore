@@ -6,12 +6,6 @@ dist/
 wheels/
 *.egg-info
 
-# The built frontend IS committed so git-push deploys (FastAPI Cloud GitHub
-# integration) include it. Rebuild before committing frontend changes:
-#   cd frontend && npm run build
-!frontend/dist/
-!frontend/dist/**
-
 # Virtual environments
 .venv
 

@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-# dist is intentionally committed so git-push deploys include the built SPA.
+dist
 dist-ssr
 *.local
 

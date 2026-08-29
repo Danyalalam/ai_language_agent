@@ -6,13 +6,11 @@ import logging
 import os
 import subprocess
 import tempfile
-from pathlib import Path
 
 import azure.cognitiveservices.speech as speechsdk
 import uvicorn
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse
 
 from app.config import settings
 from app.models.schemas import PronunciationAnalysisResponse, PronunciationReport
@@ -33,30 +31,6 @@ app = FastAPI(
     description="AI Language Agent for English Pronunciation Analysis",
 )
 
-_APP_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _APP_DIR.parent
-_FRONTEND_DIST_CANDIDATES = [
-    _REPO_ROOT / "frontend" / "dist",
-    _APP_DIR / "frontend" / "dist",
-    _APP_DIR / "dist",
-    Path.cwd() / "frontend" / "dist",
-]
-
-
-def get_frontend_dist() -> Path | None:
-    for candidate in _FRONTEND_DIST_CANDIDATES:
-        if candidate.is_dir() and (candidate / "index.html").is_file():
-            # print() (not logger) so this shows in FastAPI Cloud's stdout logs;
-            # the module logger is configured to write to a file, not stdout.
-            print(f"[frontend] serving SPA from: {candidate}", flush=True)
-            return candidate
-    print(
-        "[frontend] dist NOT found; checked: "
-        + ", ".join(str(c) for c in _FRONTEND_DIST_CANDIDATES),
-        flush=True,
-    )
-    return None
-
 # Instantiate lazily: AzurePronunciationAssistant() validates Azure Speech
 # credentials in its constructor and raises if they're missing. Building it at
 # import time would crash the whole app on startup (failing cloud verification)
@@ -75,8 +49,11 @@ def get_pronunciation_assistant() -> AzurePronunciationAssistant:
 
 app.add_middleware(
     CORSMiddleware,
+    # The frontend is deployed separately (Vercel), so requests are cross-origin.
+    # We don't use cookies/auth, so credentials stay off — which lets us allow all
+    # origins ("*"). Restrict `allowed_origins` in config to lock this down later.
     allow_origins=settings.allowed_origins,
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -467,48 +444,14 @@ async def voice_live(websocket: WebSocket):
     await run_voicelive_bridge(websocket)
 
 
-_FRONTEND_DIST = get_frontend_dist()
-
-if _FRONTEND_DIST is not None and hasattr(app, "frontend"):
-    app.frontend("/", directory=str(_FRONTEND_DIST))
-    logger.info("Serving frontend from %s", _FRONTEND_DIST)
-else:
-
-    @app.get("/")
-    async def root():
-        """Serve the SPA at the deployment root when the frontend build exists."""
-        if _FRONTEND_DIST is not None:
-            return FileResponse(_FRONTEND_DIST / "index.html")
-
-        return HTMLResponse(
-            """
-            <html>
-              <head><title>AI Language Agent</title></head>
-              <body>
-                <h1>AI Language Agent</h1>
-                <p>The backend is running, but the frontend build was not found.</p>
-                <p>Build the frontend and deploy the generated <code>frontend/dist</code> folder with the app.</p>
-              </body>
-            </html>
-            """,
-            status_code=200,
-        )
-
-
-    @app.get("/{path:path}")
-    async def spa_fallback(path: str):
-        """Serve built frontend assets and support client-side routing."""
-        if path.startswith("api/") or path in {"docs", "redoc", "openapi.json", "health"}:
-            raise HTTPException(status_code=404, detail="Not Found")
-
-        if _FRONTEND_DIST is None:
-            raise HTTPException(status_code=404, detail="Not Found")
-
-        requested_file = _FRONTEND_DIST / path
-        if requested_file.is_file():
-            return FileResponse(requested_file)
-
-        return FileResponse(_FRONTEND_DIST / "index.html")
+@app.get("/")
+async def root():
+    """This service is an API only; the frontend is deployed separately (Vercel)."""
+    return {
+        "service": settings.api_title,
+        "status": "ok",
+        "docs": "/docs",
+    }
 
 
 if __name__ == "__main__":
