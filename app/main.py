@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 import subprocess
+import sys
 import tempfile
 
 import azure.cognitiveservices.speech as speechsdk
@@ -18,10 +19,16 @@ from app.services.AI_service import generate_ai_report
 from app.services.azure_pronunciation import AzurePronunciationAssistant
 from app.services.voicelive_bridge import run_voicelive_bridge
 
+# Log to stdout by default. Container platforms (Azure App Service, DigitalOcean
+# App Platform, Cloud Run, `docker logs`) collect stdout — a file inside the
+# container is invisible there and dies with the container. Set LOG_FILE to opt
+# back into file logging. LOG_LEVEL defaults to INFO because DEBUG turns on the
+# Azure/aiohttp SDK firehose, which is what grew backend_errors.log to ~10 MB.
+_log_file = os.getenv("LOG_FILE")
 logging.basicConfig(
-    filename="backend_errors.log",
-    level=logging.DEBUG,
+    level=getattr(logging, os.getenv("LOG_LEVEL", "INFO").upper(), logging.INFO),
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.FileHandler(_log_file) if _log_file else logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger(__name__)
 

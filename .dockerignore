@@ -1,27 +1,30 @@
+# NOTE: .dockerignore patterns are NOT .gitignore patterns. A bare pattern like
+# `.venv/` matches only the context root — it does NOT apply at every depth the
+# way git does. Nested paths need an explicit `**/` prefix. (This bit us with
+# app/.venv, ~188 MB of site-packages that was being copied into the image.)
+
 # Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+**/__pycache__/
+**/*.py[cod]
 *.egg-info/
 dist/
 build/
 .eggs/
 
 # Virtual environments
-.venv/
-venv/
-env/
+**/.venv/
+**/venv/
+**/env/
 
-# Testing
+# Testing / linting caches
 .pytest_cache/
+.ruff_cache/
 .coverage
 htmlcov/
 
 # Logs
-*.log
-backend_errors.log
+**/*.log
+logs/
 
 # Environment & secrets — NEVER bake into image
 .env
@@ -31,9 +34,9 @@ backend_errors.log
 # IDE
 .vscode/
 .idea/
-*.swp
+**/*.swp
 
-# Frontend (not needed in backend image)
+# Frontend (built and shipped separately)
 frontend/
 
 # Docker files themselves
@@ -41,11 +44,13 @@ Dockerfile
 docker-compose.yml
 .dockerignore
 
-# Git
+# VCS / CI / deploy-CLI state
 .git/
 .gitignore
+.github/
+.fastapicloud/
 
-# Audio test files
-*.wav
-*.mp3
-*.m4a
+# Audio test fixtures
+**/*.wav
+**/*.mp3
+**/*.m4a

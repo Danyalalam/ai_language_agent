@@ -41,7 +41,7 @@ It also includes a live German speaking agent powered by Azure VoiceLive for rea
 ├── frontend/
 │   ├── src/                   # React application source
 │   ├── Dockerfile             # Frontend container build
-│   └── nginx.conf             # Production frontend routing
+│   └── nginx.conf.template    # Frontend routing (envsubst'd at container start)
 ├── Dockerfile                 # Backend container build
 ├── docker-compose.yml         # Full-stack orchestration
 └── pyproject.toml             # Python dependencies and project metadata
@@ -82,6 +82,30 @@ After startup:
 
 - Frontend: http://localhost:3000
 - Backend health check: http://localhost:8000/health
+
+The frontend container calls the API at the same origin (`/api`) and Nginx
+proxies it to the backend, including both WebSocket routes. Logs go to stdout:
+`docker compose logs -f backend`.
+
+### Deploying the containers elsewhere
+
+Both images are portable to Azure App Service, DigitalOcean App Platform, Cloud
+Run, or a plain VM. Runtime knobs, all with working defaults:
+
+| Variable | Image | Default | Purpose |
+| --- | --- | --- | --- |
+| `PORT` | backend, frontend | `8000` / `80` | Port to bind. Platforms that inject their own `PORT` work with no changes. |
+| `BACKEND_ORIGIN` | frontend | `http://backend:8000` | Where Nginx proxies `/api`, `/analyze`, `/health`. |
+| `LOG_LEVEL` | backend | `INFO` | Set `DEBUG` for the Azure SDK firehose. |
+| `LOG_FILE` | backend | unset (stdout) | Set a path to log to a file instead. |
+
+The frontend's API base URL is baked in at **build** time, not runtime:
+
+```bash
+docker build -t frontend --build-arg VITE_API_BASE_URL=https://api.example.com/api ./frontend
+```
+
+Leave it at the default `/api` when Nginx fronts the backend on the same origin.
 
 ## Local Development
 

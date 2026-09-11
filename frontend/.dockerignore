@@ -1,8 +1,18 @@
-node_modules/
+# See the note in the repo-root .dockerignore: these patterns match the build
+# context root only, so nested matches need an explicit `**/` prefix.
+**/node_modules/
 dist/
+dist-ssr/
+
+# Env files are excluded on purpose — the API URL comes in as a build arg so a
+# committed .env.production (used by the Vercel build) can't leak into the image.
 .env
 .env.*
 !.env.example
-*.log
+
+**/*.log
 .vscode/
 .idea/
+.git/
+Dockerfile
+.dockerignore

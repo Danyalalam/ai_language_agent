@@ -6,14 +6,19 @@ services:
       dockerfile: Dockerfile
     container_name: language_agent_backend
     ports:
-      - "8000:8000"
+      - "8000:8000"       # published for direct debugging; the app is reached via nginx
     env_file:
-      - .env                      # your Azure keys live here
-    volumes:
-      - ./backend_errors.log:/app/backend_errors.log   # persist logs
+      - .env              # your Azure keys live here
+    environment:
+      PORT: 8000
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    # Logs go to stdout — read them with `docker compose logs -f backend`.
+    # The old `./backend_errors.log:/app/backend_errors.log` bind mount is gone:
+    # if that host file is ever missing, Docker creates a DIRECTORY in its place
+    # and logging.FileHandler then fails at import, so the container won't boot.
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -24,10 +29,18 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - VITE_API_BASE_URL=http://localhost:8000/api
+        # Same-origin: the browser calls /api on the frontend and nginx proxies
+        # it to the backend. This mirrors a real single-host deployment and keeps
+        # the proxy (including both WebSocket routes) on the tested path.
+        # An absolute http://localhost:8000/api would work too, but it bypasses
+        # nginx entirely and leaves the proxy config unexercised.
+        - VITE_API_BASE_URL=/api
     container_name: language_agent_frontend
     ports:
       - "3000:80"
+    environment:
+      PORT: 80
+      BACKEND_ORIGIN: http://backend:8000
     depends_on:
       backend:
         condition: service_healthy

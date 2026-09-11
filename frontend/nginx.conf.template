@@ -1,0 +1,90 @@
+# Rendered at container start by the nginx image's entrypoint, which runs
+# envsubst over /etc/nginx/templates/*.template into /etc/nginx/conf.d/.
+# Only ${VARS} that actually exist in the environment are substituted, so
+# nginx's own $uri / $host / $http_upgrade pass through untouched.
+#
+#   PORT           - port to listen on (platforms like DigitalOcean App
+#                    Platform and Azure inject this; defaults to 80)
+#   BACKEND_ORIGIN - where to proxy the API (defaults to the compose service)
+#
+# NGINX_LOCAL_RESOLVERS is filled in from /etc/resolv.conf by the image's
+# 15-local-resolvers.envsh, which is opt-in via NGINX_ENTRYPOINT_LOCAL_RESOLVERS
+# (set in the Dockerfile).
+
+# Resolve the upstream per-request instead of once at startup. With a literal
+# hostname in proxy_pass, nginx resolves at config-parse time: it REFUSES TO
+# BOOT if the API isn't resolvable yet (crash-loop when the backend starts
+# second), and it then pins that IP forever, so it keeps proxying to a dead
+# address if the backend is replaced. Both are routine on Azure / App Platform.
+# Assigning to a variable defers resolution to request time, which needs an
+# explicit resolver and an explicit $request_uri (nginx does not append the
+# original URI when proxy_pass contains a variable).
+resolver ${NGINX_LOCAL_RESOLVERS} valid=30s;
+
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
+server {
+    listen ${PORT};
+    server_name _;
+
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # Required for large audio file uploads
+    client_max_body_size 50M;
+
+    # WebSocket endpoints: /api/assess/stream and /api/voice/live.
+    #
+    # This MUST come before the general /api regex below. nginx checks prefix
+    # locations first and remembers the longest, but then tests regex locations
+    # and a regex match WINS over the remembered prefix. The previous config had
+    # `location /api/assess/stream` (a prefix) after `location ~ ^/(api|...)` (a
+    # regex), so the regex swallowed it and the upgrade headers never applied —
+    # both WebSockets were broken. Regexes are tried in file order, first match
+    # wins, so ordering this one first is what makes it take effect.
+    location ~ ^/api/(assess/stream|voice/live)$ {
+        set $upstream "${BACKEND_ORIGIN}";
+        proxy_pass $upstream$request_uri;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        # Voice sessions are long-lived and can idle between utterances.
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+    }
+
+    # Proxy the rest of the FastAPI routes to the backend
+    location ~ ^/(api|analyze|health) {
+        set $upstream "${BACKEND_ORIGIN}";
+        proxy_pass $upstream$request_uri;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_read_timeout 120s;
+        proxy_connect_timeout 10s;
+    }
+
+    # Hashed build assets are immutable — cache them hard.
+    location /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable" always;
+    }
+
+    # Serve React app - handle client-side routing
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    # Gzip compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml image/svg+xml;
+}
