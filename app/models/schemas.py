@@ -51,6 +51,3 @@ class AIReport(BaseModel):
 class PronunciationAnalysisResponse(BaseModel):
     azure_result: PronunciationReport
     ai_report: AIReport
-
-# class PronunciationAnalysisResponse(BaseModel):
-#     azure_result: PronunciationAssessmentResult
